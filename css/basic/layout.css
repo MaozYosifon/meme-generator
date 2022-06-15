@@ -1,0 +1,22 @@
+.main-layout {
+    /* box-sizing: content-box; */
+    padding-inline-start: 1.6rem;
+    padding-inline-end: 1.6rem;
+}
+
+.card-layout {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.card-layout > *:not(:last-child) {
+    margin-bottom: 5rem;
+}
+
+.footer-layout {
+    min-width: 240px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    height: 19.6875rem;
+}

@@ -1,0 +1,44 @@
+html {
+    font-family: 'Lato', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.2065;
+    /* color: var(--clr3); */
+    background-color: #22252c;
+}
+
+h2 {
+    font-size: 1.75em;
+    margin: 0 0 2.8125rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+p {
+    margin: 0 0 2em;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: var(--clr2);
+}
+
+.logo {
+    font-family: Eurofurencer;
+    font-size: 2.5em;
+}
+
+.logo span {
+    color: var(--clr2);
+}

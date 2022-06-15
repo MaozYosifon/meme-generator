@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Meme-Generator</title>
+</head>
+
+<body onload="init()">
+
+    <header class="top-header">
+        <div class="header-container main-layout flex align-center space-between">
+            <img src="/DESIGN/LOGO/LOGO.png" class="logo" alt="logo-img" onclick="onImg()">
+            <ul class="nav-bar clean-list flex">
+                <li><a href="#" onclick="onGallery()">gallery</a></li>
+                <li><a href="#" onclick="onAbout()">About</a></li>
+            </ul>
+            <button onclick="toggleMenu(this)" class="menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <section class="grid-container">
+        <div class="img-container grid"></div>
+
+        <div class="canvas-container">
+            <canvas class="canvas" height="546" width="476" style="border: 1px solid black;"></canvas>
+            <div class="generator-container">
+                <input type="text">
+
+                <select onchange="onFontChange()" name="" id="">
+                    <option value="ariel"></option>
+                    <option value="impact"></option>
+                </select>
+
+
+            </div>
+        </div>
+    </section>
+
+    <script src="js/servisces/meme.service.js"></script>
+    <script src="js/meme.controler.js"></script>
+</body>
+
+</html>
