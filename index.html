@@ -13,35 +13,84 @@
 
     <header class="top-header">
         <div class="header-container main-layout flex align-center space-between">
-            <img src="/DESIGN/LOGO/LOGO.png" class="logo" alt="logo-img" onclick="onImg()">
+            <img src="img/LOGO/LOGO.png" class="logo" alt="logo-img">
             <ul class="nav-bar clean-list flex">
-                <li><a href="#" onclick="onGallery()">gallery</a></li>
+                <li><a href="#" onclick="onGallery()">Gallery</a></li>
                 <li><a href="#" onclick="onAbout()">About</a></li>
             </ul>
             <button onclick="toggleMenu(this)" class="menu-toggle">☰</button>
         </div>
     </header>
 
-    <section class="grid-container">
+    <section class="main-content">
         <div class="img-container grid"></div>
 
-        <div class="canvas-container">
-            <canvas class="canvas" height="546" width="476" style="border: 1px solid black;"></canvas>
-            <div class="generator-container">
-                <input type="text">
+        <div class="main-canvas-container">
+            <div class="canvas-container">
 
-                <select onchange="onFontChange()" name="" id="">
-                    <option value="ariel"></option>
-                    <option value="impact"></option>
-                </select>
+                <canvas class="canvas" height="500" width="500" style="border: 1px solid black;"></canvas>
 
+                <div class="background-control">
+                    <div class="controller-container">
+                        <div class="input"> <input class="text-input" type="text" onkeyup="onChangeText(this.value)"
+                                placeholder="text?"></div>
+                        <div class="move-add-remove">
+                            <img class="move" onclick="onMoveLine()"
+                                src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="">
+                            <img onclick="onAddLine()" class="add" src="img/ICONS/add.png" alt="">
+                            <img class="remove" onclick="onRemoveLine()" src="img/ICONS/trash.png" alt="">
+                        </div>
 
+                        <div class="font-option-container">
+                            <img class="increase-font" onclick="onIncreaseFont()" src="img/ICONS/increase font-icon.png"
+                                alt="">
+                            <img class="decrease-font" onclick="onDecreaseFont()" src="img/ICONS/decrease font-icon.png"
+                                alt="">
+                            <img class="align-left" onclick="onAlignLeft()" src="img/ICONS/align-to-left.png" alt="">
+                            <img class="align-center" onclick="onAlignCenter()"
+                                src="img/ICONS/center-text-alignment.png" alt="">
+                            <img class="align-right" onclick="onAlignRight()" src="img/ICONS/align-to-right.png" alt="">
+                            <select onchange="onFontChange(this.value)" name="" id="">
+                                <option value="impact">impact</option>
+                                <option value="arial"> arial</option>
+                            </select>
+                            <label class="s-underline">
+                                <img src="img/ICONS/s.png" alt="">
+                                <input class="s-underline" onchange="onSetStrokeColor(this.value)" type="color"
+                                    style="opacity: 0;">
+                            </label>
+                            <label class="color">
+                                <img src="img/ICONS/paint-board-and-brush.png" alt="">
+                                <input onchange="onSetFillColor(this.value)" class="color" type="color"
+                                    style="opacity: 0;">
+                            </label>
+                        </div>
+
+                        <div class="sticker-container">
+                            <img class="item item1" onclick="onAddSticker(this.src)" src="img/sticker/Calque_7.png"
+                                alt="item1">
+                            <img class="item item2" onclick="onAddSticker(this.src)" src="img/sticker/Calque_8.png"
+                                alt="item2">
+                            <img class="item item3" onclick="onAddSticker(this.src)" src="img/sticker/emoji_off.png"
+                                alt="item3">
+                            <img class="item item4" onclick="onAddSticker(this.src)" src="img/sticker/Emoji_on.png"
+                                alt="item4">
+                        </div>
+
+                        <div class="share-download-container">
+                            <div class="share" onclick="onShare()">Share</div>
+                            <div class="download"> <a href="#" onclick="downloadCanvas(this)"
+                                    download="file-name">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <script src="js/servisces/meme.service.js"></script>
-    <script src="js/meme.controler.js"></script>
+    <script src="js/meme.controller.js"></script>
 </body>
 
 </html>

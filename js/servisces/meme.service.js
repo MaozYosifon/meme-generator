@@ -1,3 +1,5 @@
+'use strict';
+
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 };
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny', 'tramp'] },
@@ -20,19 +22,135 @@ var gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['funny', 'toy story'] },
 ];
 
+var gIdLine = 0;
+
 var gMeme = {
-    selectedImgId: 5,
+    selectedImgId: null,
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'I sometimes eat Falafel',
-            size: 20,
-            align: 'left',
-            color: 'red',
-        },
-    ],
+    startedLineIdx: 0,
+    lines: [],
 };
+
+function addNewLineTxt(
+    txt,
+    textLocationHeight = document.querySelector('.canvas').height / 2,
+    rectHeigh = document.querySelector('.canvas').height / 2 - 50
+) {
+    gIdLine++;
+    gMeme.lines.push({
+        id: gIdLine,
+        txt: txt,
+        size: 50,
+        align: 'center',
+        font: 'impact',
+        colorFill: 'white',
+        colorStroke: 'black',
+        x: 10,
+        y: textLocationHeight,
+        rectSize: {
+            pos: { x: 5, y: rectHeigh },
+            height: 50,
+            width: 490,
+        },
+        isDrag: false,
+        isSticker: false,
+    });
+}
 
 function getImgs() {
     return gImgs;
+}
+
+function getMeme() {
+    return gMeme;
+}
+
+function setGMemeImgId(id) {
+    gMeme.selectedImgId = id;
+}
+
+function setLineDrag(isDrag) {
+    if (gMeme.selectedLineIdx === -1 || !gMeme.lines.length) return;
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag;
+}
+
+function setText(text) {
+    if (gMeme.selectedLineIdx === -1 || gMeme.lines.length === 0) return;
+    gMeme.lines[gMeme.selectedLineIdx].txt = text;
+}
+
+function setFont(font) {
+    if (gMeme.selectedLineIdx === -1) return;
+    gMeme.lines[gMeme.selectedLineIdx].font = font;
+}
+
+function setIncreaseFont() {
+    if (gMeme.selectedLineIdx === -1) return;
+    gMeme.lines[gMeme.selectedLineIdx].size++;
+}
+
+function setDecreaseFont() {
+    if (gMeme.selectedLineIdx === -1) return;
+    gMeme.lines[gMeme.selectedLineIdx].size--;
+}
+
+function setFillColor(color) {
+    if (gMeme.selectedLineIdx === -1) return;
+    if (!color) color = 'white';
+    gMeme.lines[gMeme.selectedLineIdx].colorFill = color;
+}
+
+function setStrokeColor(color) {
+    if (gMeme.selectedLineIdx === -1) return;
+    if (!color) color = 'black';
+    gMeme.lines[gMeme.selectedLineIdx].colorStroke = color;
+}
+
+function setAlignLeft() {
+    if (gMeme.selectedLineIdx === -1) return;
+    gMeme.lines[gMeme.selectedLineIdx].x = 0;
+}
+
+function setAlignRight(canvasWidth) {
+    if (gMeme.selectedLineIdx === -1) return;
+    gMeme.lines[gMeme.selectedLineIdx].x = canvasWidth - gMeme.lines[gMeme.selectedLineIdx].currentWidth;
+}
+
+function setAlignCenters(canvasWidth) {
+    if (gMeme.selectedLineIdx === -1) return;
+    gMeme.lines[gMeme.selectedLineIdx].x = canvasWidth / 2 - gMeme.lines[gMeme.selectedLineIdx].currentWidth / 2;
+}
+
+function getMoveLine() {
+    if (gMeme.selectedLineIdx === -1) gMeme.selectedLineIdx = 0;
+    else if (gMeme.selectedLineIdx >= 0 && gMeme.selectedLineIdx !== gMeme.lines.length - 1) gMeme.selectedLineIdx++;
+    else if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0;
+    return gMeme.lines[gMeme.selectedLineIdx].txt;
+}
+
+function setRemoveLine() {
+    if (gMeme.selectedLineIdx === -1) return;
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+}
+
+function addNewLineSticker(stickerSrc) {
+    var elCanvas = getElCanvas();
+    gIdLine++;
+    gMeme.lines.push({
+        id: gIdLine,
+        txt: '',
+        src: stickerSrc,
+        size: 100,
+        sizeWidth: 200,
+        sizeHeight: 200,
+        x: elCanvas.width / 2,
+        y: elCanvas.height / 2,
+        rectSize: {
+            pos: { x: elCanvas.width / 2, y: elCanvas.height / 2 },
+            height: 110,
+            width: 110,
+        },
+        isDrag: false,
+        isSticker: true,
+    });
 }

@@ -12,6 +12,7 @@ body {
     line-height: 1.2065;
     /* color: var(--clr3); */
     background-color: #22252c;
+    padding: 1rem 2rem;
 }
 
 h2 {
